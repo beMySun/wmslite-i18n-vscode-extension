@@ -49,27 +49,23 @@ const getCurrentOpenedFolderPath = () => {
     let workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri);
     path = workspaceFolder.uri.path;
   }
-
-  // var rootUri = vscode.workspace.workspaceFolders[0].uri;
-  // // currently opened file's project folder path[Opened single project]
-  // path = rootUri.fsPath;
-
   return path;
 };
 
 const download = async (showInformationMessage) => {
-  const locales =
-    localesHash[country] || Object.values(localesHash).reduce((previous, current) => previous.concat(current), []);
-  if (!locales) {
-    console.error('This country is not in service.');
-    showInformationMessage('This country is not in service.');
+
+  const currnetPath = getCurrentOpenedFolderPath();
+  const projectName = currnetPath.split('/').pop();
+  if (projectName !== 'wms-lite-fe') {
+    showInformationMessage('❌❌❌ Sorry, This project is not in service.');
     return;
   }
 
-  const currnetPath = getCurrentOpenedFolderPath();
-
-  console.log('Current project path is: ', currnetPath);
-  showInformationMessage(currnetPath);
+  const locales = localesHash[country] || Object.values(localesHash).reduce((previous, current) => previous.concat(current), []);
+  if (!locales) {
+    showInformationMessage('This country is not in service.');
+    return;
+  }
 
   showInformationMessage('Downloading...');
 
@@ -86,14 +82,16 @@ const download = async (showInformationMessage) => {
 
     const filePath = path.resolve(currnetPath, `src/i18n/locales/${deployMap[locale]}.json`);
     const isExist = await access(filePath);
-    const operation = isExist ? '🐈 Update' : '🐶 Create';
+    const operation = isExist ? '🐱Update' : '🐶Create';
 
     fs.writeFileSync(filePath, `${data}\n`);
 
     console.log(`${operation}\t${filePath}`);
-    // showInformationMessage(`${operation}\t${filePath}`);
+    showInformationMessage(`${operation}\t${filePath}`);
   }
-  // showInformationMessage('🎉🎉🎉 Download Success !');
+
+  console.log('🎉🎉🎉 Download Success !');
+  showInformationMessage('🎉🎉🎉 Download Success !');
 };
 
 module.exports = {

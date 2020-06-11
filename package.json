@@ -2,8 +2,9 @@
   "name": "i18n-downloader",
   "displayName": "i18n",
   "description": "i18n downloader",
+  "repository": "git@github.com:beMySun/i18n.git",
   "publisher": "KK",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "1.45.1"
   },
