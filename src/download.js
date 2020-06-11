@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const fetch = require('isomorphic-fetch');
 const localesHash = require('./localesHash');
-const { mkdirsSync } = require('../utils')
+const { mkdirsSync } = require('../utils');
 const argv = process.argv.slice(2);
 const country = (argv[0] || '').toUpperCase();
 const deployMap = {
@@ -43,23 +43,23 @@ const access = async (filePath) =>
     });
   });
 
-  const getCurrentOpenedFolderPath = () => {
-
-    let path;
-    if (vscode.window.activeTextEditor) {
-      let workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri);
-      path = workspaceFolder.uri;
-    }
-
-    // var rootUri = vscode.workspace.workspaceFolders[0].uri;
-    // // currently opened file's project folder path[Opened single project]
-    // path = rootUri.fsPath;
-  
-    return path;
+const getCurrentOpenedFolderPath = () => {
+  let path;
+  if (vscode.window.activeTextEditor) {
+    let workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri);
+    path = workspaceFolder.uri.path;
   }
 
+  // var rootUri = vscode.workspace.workspaceFolders[0].uri;
+  // // currently opened file's project folder path[Opened single project]
+  // path = rootUri.fsPath;
+
+  return path;
+};
+
 const download = async (showInformationMessage) => {
-  const locales = localesHash[country] || Object.values(localesHash).reduce((previous, current) => previous.concat(current), []);
+  const locales =
+    localesHash[country] || Object.values(localesHash).reduce((previous, current) => previous.concat(current), []);
   if (!locales) {
     console.error('This country is not in service.');
     showInformationMessage('This country is not in service.');
@@ -70,7 +70,6 @@ const download = async (showInformationMessage) => {
 
   console.log('Current project path is: ', currnetPath);
   showInformationMessage(currnetPath);
-  
 
   showInformationMessage('Downloading...');
 
@@ -79,13 +78,13 @@ const download = async (showInformationMessage) => {
     const data = JSON.stringify(keys, null, 2);
 
     // https://github.com/jawil/blog/issues/18
-    const directoryPath = path.resolve(__dirname, 'i18n/locales');
+    const directoryPath = path.resolve(currnetPath, 'src/i18n/locales');
 
     if (!fs.existsSync(directoryPath)) {
       mkdirsSync(directoryPath);
     }
 
-    const filePath = path.resolve(__dirname, `i18n/locales/${deployMap[locale]}.json`);
+    const filePath = path.resolve(currnetPath, `src/i18n/locales/${deployMap[locale]}.json`);
     const isExist = await access(filePath);
     const operation = isExist ? '🐈 Update' : '🐶 Create';
 
@@ -96,9 +95,6 @@ const download = async (showInformationMessage) => {
   }
   // showInformationMessage('🎉🎉🎉 Download Success !');
 };
-
-
-
 
 module.exports = {
   download,
