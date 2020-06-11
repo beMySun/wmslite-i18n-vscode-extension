@@ -27,13 +27,13 @@ function activate(context) {
     vscode.window.showInformationMessage('Hello KK !');
   });
 
-	const downloadI18nResources = vscode.commands.registerCommand('i18n.downloadI18nResources', () => {
-    vscode.window.showInformationMessage('downloadI18nResources !');
-  });
+	// const downloadI18nResources = vscode.commands.registerCommand('i18n.downloadI18nResources', () => {
+  //   vscode.window.showInformationMessage('downloadI18nResources !');
+  // });
 
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(sayKK);
-	context.subscriptions.push(downloadI18nResources);
+	// context.subscriptions.push(downloadI18nResources);
 
 	require('./src/sayKK')(context); // helloworld
 }

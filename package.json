@@ -1,8 +1,8 @@
 {
   "name": "i18n",
   "displayName": "i18n",
-	"description": "i18n downloader",
-	"publisher": "KK",
+  "description": "i18n downloader",
+  "publisher": "KK",
   "version": "0.0.1",
   "engines": {
     "vscode": "1.45.1"
@@ -19,20 +19,15 @@
       {
         "command": "i18n.helloWorld",
         "title": "Hello World!"
-			},
-			{
-				"command": "i18n.sayKK",
-				"title": "Hello, KK!"
-			},
-			{
-				"command": "i18n.downloadI18nResources",
-				"title": "download i18n resources"
-			},
-			{
-				"command": "i18n.outside",
-				"title": "Call from outside !!!"
-			}
-			
+      },
+      {
+        "command": "i18n.sayKK",
+        "title": "Hello, KK!"
+      },
+      {
+        "command": "i18n.downloadI18nResources",
+        "title": "download i18n resources"
+      }
     ],
     "menus": {
       "editor/context": [
@@ -40,20 +35,15 @@
           "when": "editorFocus",
           "command": "i18n.helloWorld",
           "group": "navigation"
-				},
-				{
+        },
+        {
           "when": "editorFocus",
           "command": "i18n.sayKK",
           "group": "navigation"
-				},
-				{
+        },
+        {
           "when": "editorFocus",
           "command": "i18n.downloadI18nResources",
-          "group": "navigation"
-				},
-				{
-          "when": "editorFocus",
-          "command": "i18n.outside",
           "group": "navigation"
         }
       ]
@@ -65,14 +55,19 @@
     "test": "node ./test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "1.45.1",
     "@types/glob": "^7.1.1",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.11.0",
+    "@types/vscode": "1.45.1",
     "eslint": "^6.8.0",
     "glob": "^7.1.6",
     "mocha": "^7.1.2",
     "typescript": "^3.8.3",
     "vscode-test": "^1.3.0"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "isomorphic-fetch": "^2.2.1",
+    "path": "^0.12.7"
   }
 }

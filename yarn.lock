@@ -47,7 +47,7 @@
   version "13.13.12"
   resolved "https://npm.garenanow.com/@types%2fnode/-/node-13.13.12.tgz#9c72e865380a7dc99999ea0ef20fc9635b503d20"
 
-"@types/vscode@^1.46.0":
+"@types/vscode@1.45.1":
   version "1.45.1"
   resolved "https://npm.garenanow.com/@types%2fvscode/-/vscode-1.45.1.tgz#672fb8c2cc33cf14cd4d3bdaa19bb294fe2b2706"
 
@@ -294,6 +294,12 @@ emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://npm.garenanow.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
 
+encoding@^0.1.11:
+  version "0.1.12"
+  resolved "https://npm.garenanow.com/encoding/-/encoding-0.1.12.tgz#538b66f3ee62cd1ab51ec323829d1f9480c74beb"
+  dependencies:
+    iconv-lite "~0.4.13"
+
 es-abstract@^1.17.0-next.1, es-abstract@^1.17.5:
   version "1.17.5"
   resolved "https://npm.garenanow.com/es-abstract/-/es-abstract-1.17.5.tgz#d8c9d1d66c8981fb9200e2251d799eee92774ae9"
@@ -493,6 +499,10 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://npm.garenanow.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
+fs@^0.0.1-security:
+  version "0.0.1-security"
+  resolved "https://npm.garenanow.com/fs/-/fs-0.0.1-security.tgz#8a7bd37186b6dddf3813f23858b57ecaaf5e41d4"
+
 fsevents@~2.1.1:
   version "2.1.3"
   resolved "https://npm.garenanow.com/fsevents/-/fsevents-2.1.3.tgz#fb738703ae8d2f9fe900c33836ddebee8b97f23e"
@@ -583,7 +593,7 @@ https-proxy-agent@^2.2.4:
     agent-base "^4.3.0"
     debug "^3.1.0"
 
-iconv-lite@^0.4.24:
+iconv-lite@^0.4.24, iconv-lite@~0.4.13:
   version "0.4.24"
   resolved "https://npm.garenanow.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
   dependencies:
@@ -614,6 +624,10 @@ inflight@^1.0.4:
 inherits@2:
   version "2.0.4"
   resolved "https://npm.garenanow.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
+
+inherits@2.0.3:
+  version "2.0.3"
+  resolved "https://npm.garenanow.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
 inquirer@^7.0.0:
   version "7.1.0"
@@ -679,6 +693,10 @@ is-regex@^1.0.5:
   dependencies:
     has-symbols "^1.0.1"
 
+is-stream@^1.0.1:
+  version "1.1.0"
+  resolved "https://npm.garenanow.com/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
+
 is-symbol@^1.0.2:
   version "1.0.3"
   resolved "https://npm.garenanow.com/is-symbol/-/is-symbol-1.0.3.tgz#38e1014b9e6329be0de9d24a414fd7441ec61937"
@@ -688,6 +706,13 @@ is-symbol@^1.0.2:
 isexe@^2.0.0:
   version "2.0.0"
   resolved "https://npm.garenanow.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
+
+isomorphic-fetch@^2.2.1:
+  version "2.2.1"
+  resolved "https://npm.garenanow.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
+  dependencies:
+    node-fetch "^1.0.1"
+    whatwg-fetch ">=0.10.0"
 
 js-tokens@^4.0.0:
   version "4.0.0"
@@ -819,6 +844,13 @@ node-environment-flags@1.0.6:
     object.getownpropertydescriptors "^2.0.3"
     semver "^5.7.0"
 
+node-fetch@^1.0.1:
+  version "1.7.3"
+  resolved "https://npm.garenanow.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
+  dependencies:
+    encoding "^0.1.11"
+    is-stream "^1.0.1"
+
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
   resolved "https://npm.garenanow.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
@@ -908,6 +940,13 @@ path-key@^2.0.1:
   version "2.0.1"
   resolved "https://npm.garenanow.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
 
+path@^0.12.7:
+  version "0.12.7"
+  resolved "https://npm.garenanow.com/path/-/path-0.12.7.tgz#d4dc2a506c4ce2197eb481ebfcd5b36c0140b10f"
+  dependencies:
+    process "^0.11.1"
+    util "^0.10.3"
+
 picomatch@^2.0.4:
   version "2.2.2"
   resolved "https://npm.garenanow.com/picomatch/-/picomatch-2.2.2.tgz#21f333e9b6b8eaff02468f5146ea406d345f4dad"
@@ -915,6 +954,10 @@ picomatch@^2.0.4:
 prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://npm.garenanow.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
+
+process@^0.11.1:
+  version "0.11.10"
+  resolved "https://npm.garenanow.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
 
 progress@^2.0.0:
   version "2.0.3"
@@ -1171,6 +1214,12 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+util@^0.10.3:
+  version "0.10.4"
+  resolved "https://npm.garenanow.com/util/-/util-0.10.4.tgz#3aa0125bfe668a4672de58857d3ace27ecb76901"
+  dependencies:
+    inherits "2.0.3"
+
 v8-compile-cache@^2.0.3:
   version "2.1.1"
   resolved "https://npm.garenanow.com/v8-compile-cache/-/v8-compile-cache-2.1.1.tgz#54bc3cdd43317bca91e35dcaf305b1a7237de745"
@@ -1182,6 +1231,10 @@ vscode-test@^1.3.0:
     http-proxy-agent "^2.1.0"
     https-proxy-agent "^2.2.4"
     rimraf "^2.6.3"
+
+whatwg-fetch@>=0.10.0:
+  version "3.0.0"
+  resolved "https://npm.garenanow.com/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
 
 which-module@^2.0.0:
   version "2.0.0"
