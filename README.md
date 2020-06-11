@@ -1,4 +1,4 @@
-# i18n-downloader
+# wms-lite i18n vscode extension
 
 ![视频演示.mp4](https://github.com/beMySun/i18n/blob/filepath/images/show2.gif)
 
