@@ -1,11 +1,11 @@
 const vscode = require('vscode');
-const a = require('./download');
+const fileloader = require('./download');
 
-module.exports = function(context) {
-    context.subscriptions.push(vscode.commands.registerCommand('i18n.downloadI18nResources', () => {
-        vscode.window.showInformationMessage('downloading...');
-        a.download();
-        vscode.window.showInformationMessage('downloaded.');
-
-    }));
+module.exports = function (context) {
+  context.subscriptions.push(
+    vscode.commands.registerCommand('i18n.downloadI18nResources', () => {
+      const showInformationMessage = vscode.window.showInformationMessage;
+      fileloader.download(showInformationMessage);
+    })
+  );
 };

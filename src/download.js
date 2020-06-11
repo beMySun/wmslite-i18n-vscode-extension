@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const fetch = require('isomorphic-fetch');
 const localesHash = require('./localesHash');
-
+const { mkdirsSync } = require('../utils')
 const argv = process.argv.slice(2);
 const country = (argv[0] || '').toUpperCase();
 const deployMap = {
@@ -10,10 +10,10 @@ const deployMap = {
   id: 'id_ID',
 };
 
-const i18nServerURI = locale => {
+const getI18nServerURI = (locale) => {
   const keywords = {
     en: 'en',
-    id: 'id'
+    id: 'id',
   };
   const keyword = keywords[locale];
   return keyword === 'en'
@@ -21,17 +21,17 @@ const i18nServerURI = locale => {
     : `https://transify.seagroup.com/resources/572/${keyword}/json/download`;
 };
 
-const fetchKeys = async locale => {
-  const uri = i18nServerURI(locale);
+const fetchKeys = async (locale) => {
+  const uri = getI18nServerURI(locale);
   console.log(`🚚 🚚 🚚 Downloading ${locale} keys...\n${uri}`);
   const response = await fetch(uri);
   const keys = await response.json();
   return keys;
 };
 
-const access = async filePath =>
+const access = async (filePath) =>
   new Promise((resolve) => {
-    fs.access(filePath, err => {
+    fs.access(filePath, (err) => {
       if (err) {
         if (err.code === 'EXIST') {
           resolve(true);
@@ -42,28 +42,39 @@ const access = async filePath =>
     });
   });
 
-const download = async () => {
-  const locales =
-    localesHash[country] || Object.values(localesHash).reduce((previous, current) => previous.concat(current), []);
-  if (locales === undefined) {
+
+const download = async (showInformationMessage) => {
+  const locales = localesHash[country] || Object.values(localesHash).reduce((previous, current) => previous.concat(current), []);
+  if (!locales) {
     console.error('This country is not in service.');
+    showInformationMessage('This country is not in service.');
     return;
   }
+
+  showInformationMessage('Downloading...');
+
   for (const locale of locales) {
     const keys = await fetchKeys(locale);
     const data = JSON.stringify(keys, null, 2);
-    const directoryPath = path.resolve(__dirname, 'locales');
+
+    const directoryPath = path.resolve(__dirname, 'i18n/locales');
+
     if (!fs.existsSync(directoryPath)) {
-      fs.mkdirSync(directoryPath);
+      mkdirsSync(directoryPath);
     }
-    const filePath = path.resolve(__dirname, `locales/${deployMap[locale]}.json`);
+
+    const filePath = path.resolve(__dirname, `i18n/locales/${deployMap[locale]}.json`);
     const isExist = await access(filePath);
     const operation = isExist ? '🐈 Update' : '🐶 Create';
+
     fs.writeFileSync(filePath, `${data}\n`);
+
     console.log(`${operation}\t${filePath}`);
+    showInformationMessage(`${operation}\t${filePath}`);
   }
+  showInformationMessage('🎉🎉🎉 Download Success !');
 };
 
 module.exports = {
-  download
+  download,
 };
