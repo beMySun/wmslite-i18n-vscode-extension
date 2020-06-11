@@ -1,5 +1,5 @@
 {
-  "name": "i18n",
+  "name": "i18n-downloader",
   "displayName": "i18n",
   "description": "i18n downloader",
   "publisher": "KK",
@@ -21,10 +21,6 @@
         "title": "Hello World!"
       },
       {
-        "command": "i18n.sayKK",
-        "title": "Hello, KK!"
-      },
-      {
         "command": "i18n.downloadI18nResources",
         "title": "download i18n resources"
       }
@@ -34,11 +30,6 @@
         {
           "when": "editorFocus",
           "command": "i18n.helloWorld",
-          "group": "navigation"
-        },
-        {
-          "when": "editorFocus",
-          "command": "i18n.sayKK",
           "group": "navigation"
         },
         {

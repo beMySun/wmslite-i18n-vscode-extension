@@ -9,7 +9,6 @@ const vscode = require('vscode');
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
   console.log('Congratulations, your extension "i18n" is now active!');
@@ -23,19 +22,10 @@ function activate(context) {
     vscode.window.showInformationMessage('Hello World from i18n!');
   });
 
-  const sayKK = vscode.commands.registerCommand('i18n.sayKK', () => {
-    vscode.window.showInformationMessage('Hello KK !');
-  });
+  context.subscriptions.push(disposable);
+  // context.subscriptions.push(downloadI18nResources);
 
-	// const downloadI18nResources = vscode.commands.registerCommand('i18n.downloadI18nResources', () => {
-  //   vscode.window.showInformationMessage('downloadI18nResources !');
-  // });
-
-	context.subscriptions.push(disposable);
-	context.subscriptions.push(sayKK);
-	// context.subscriptions.push(downloadI18nResources);
-
-	require('./src/sayKK')(context); // helloworld
+  require('./src/downloadI18nResources')(context); // helloworld
 }
 
 exports.activate = activate;
