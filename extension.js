@@ -13,25 +13,31 @@ function activate(context) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
   console.log('Congratulations, your extension "i18n" is now active!');
-
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
   // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand('i18n.helloWorld', function () {
+  const disposable = vscode.commands.registerCommand('i18n.helloWorld', function () {
     // The code you place here will be executed every time your command is executed
 
     // Display a message box to the user
     vscode.window.showInformationMessage('Hello World from i18n!');
   });
 
-  let sayKK = vscode.commands.registerCommand('i18n.sayKK', () => {
+  const sayKK = vscode.commands.registerCommand('i18n.sayKK', () => {
     vscode.window.showInformationMessage('Hello KK !');
   });
 
+	const downloadI18nResources = vscode.commands.registerCommand('i18n.downloadI18nResources', () => {
+    vscode.window.showInformationMessage('downloadI18nResources !');
+  });
+
 	context.subscriptions.push(disposable);
-  context.subscriptions.push(sayKK);
-	
+	context.subscriptions.push(sayKK);
+	context.subscriptions.push(downloadI18nResources);
+
+	require('./src/sayKK')(context); // helloworld
 }
+
 exports.activate = activate;
 
 // this method is called when your extension is deactivated

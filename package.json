@@ -23,7 +23,16 @@
 			{
 				"command": "i18n.sayKK",
 				"title": "Hello, KK!"
+			},
+			{
+				"command": "i18n.downloadI18nResources",
+				"title": "download i18n resources"
+			},
+			{
+				"command": "i18n.outside",
+				"title": "Call from outside !!!"
 			}
+			
     ],
     "menus": {
       "editor/context": [
@@ -35,6 +44,16 @@
 				{
           "when": "editorFocus",
           "command": "i18n.sayKK",
+          "group": "navigation"
+				},
+				{
+          "when": "editorFocus",
+          "command": "i18n.downloadI18nResources",
+          "group": "navigation"
+				},
+				{
+          "when": "editorFocus",
+          "command": "i18n.outside",
           "group": "navigation"
         }
       ]
