@@ -1,3 +1,4 @@
+const vscode = require('vscode');
 const path = require('path');
 const fs = require('fs');
 const fetch = require('isomorphic-fetch');
@@ -42,6 +43,20 @@ const access = async (filePath) =>
     });
   });
 
+  const getCurrentOpenedFolderPath = () => {
+
+    let path;
+    if (vscode.window.activeTextEditor) {
+      let workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri);
+      path = workspaceFolder.uri;
+    }
+
+    // var rootUri = vscode.workspace.workspaceFolders[0].uri;
+    // // currently opened file's project folder path[Opened single project]
+    // path = rootUri.fsPath;
+  
+    return path;
+  }
 
 const download = async (showInformationMessage) => {
   const locales = localesHash[country] || Object.values(localesHash).reduce((previous, current) => previous.concat(current), []);
@@ -51,12 +66,19 @@ const download = async (showInformationMessage) => {
     return;
   }
 
+  const currnetPath = getCurrentOpenedFolderPath();
+
+  console.log('Current project path is: ', currnetPath);
+  showInformationMessage(currnetPath);
+  
+
   showInformationMessage('Downloading...');
 
   for (const locale of locales) {
     const keys = await fetchKeys(locale);
     const data = JSON.stringify(keys, null, 2);
 
+    // https://github.com/jawil/blog/issues/18
     const directoryPath = path.resolve(__dirname, 'i18n/locales');
 
     if (!fs.existsSync(directoryPath)) {
@@ -70,10 +92,13 @@ const download = async (showInformationMessage) => {
     fs.writeFileSync(filePath, `${data}\n`);
 
     console.log(`${operation}\t${filePath}`);
-    showInformationMessage(`${operation}\t${filePath}`);
+    // showInformationMessage(`${operation}\t${filePath}`);
   }
-  showInformationMessage('🎉🎉🎉 Download Success !');
+  // showInformationMessage('🎉🎉🎉 Download Success !');
 };
+
+
+
 
 module.exports = {
   download,
