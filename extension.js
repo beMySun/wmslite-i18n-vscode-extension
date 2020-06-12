@@ -25,14 +25,14 @@ function activate(context) {
   context.subscriptions.push(disposable);
   // context.subscriptions.push(downloadI18nResources);
 
-  require('./src/downloadI18nResources')(context); // helloworld
+  require('./src/downloadI18nResources')(context);
 }
 
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
 function deactivate() {
-  console.log('您的扩展 i18n 已被释放！');
+  console.log('Your Extension downloadI18nResources has been deactivated.');
 }
 
 module.exports = {
