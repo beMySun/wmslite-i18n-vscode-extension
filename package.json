@@ -4,14 +4,14 @@
   "description": "i18n downloader",
   "repository": "git@github.com:beMySun/i18n.git",
   "publisher": "scaukk",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "1.45.1"
   },
   "categories": [
     "Other"
   ],
-  "icon": "https://github.com/beMySun/wmslite-i18n-vscode-extension/blob/master/images/i18n.png",
+  "icon": "images/i18n.png",
   "activationEvents": [
     "onCommand:i18n.helloWorld"
   ],
